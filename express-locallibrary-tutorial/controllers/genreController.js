@@ -123,7 +123,7 @@ exports.genre_delete_post = asyncHandler(async (req, res, next) => {
     } else {
       //Genre has no books
       await Genre.findByIdAndDelete(req.body.genreid);
-      res.redirect("/catalogs/genres");
+      res.redirect('/catalog/genres');
     }
 });
 
