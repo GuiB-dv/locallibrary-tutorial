@@ -178,7 +178,25 @@ exports.book_delete_get = asyncHandler(async (req, res, next) => {
 
 // Handle book delete on POST.
 exports.book_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book delete POST");
+    // Get details of the book and its instance informations
+    const [book, allBookInstances] = await Promise.all([
+      Book.findById(req.params.id).populate("author").populate("genre").exec(),
+      BookInstance.find({ book: req.params.id }).exec(),
+    ]);
+    
+    if(allBookInstances.length > 0) {
+      //Book has instances
+      res.render("book_delete", {
+        title: "Delete Book",
+        book: book,
+        book_instances: allBookInstances,
+      });
+      return;
+    } else {
+      //Book has no instances. Delete book and redirect
+      await Book.findByIdAndDelete(req.body.bookid);
+      res.redirect("/catalog/books");
+    }
 });
 
 // Display book update form on GET.
