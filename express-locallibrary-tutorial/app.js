@@ -23,7 +23,7 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
 const dev_db_url =
-"mongodb+srv://admingui:SAZd9NnZ160ksM8j@cluster0.h7dn8fe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+"mongodb+srv://admingui:UW9lS6xmaYM4nH8D@cluster0.h7dn8fe.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0";
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 main().catch((err) => console.log(err));
