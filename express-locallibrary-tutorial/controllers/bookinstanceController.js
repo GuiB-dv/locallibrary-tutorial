@@ -57,7 +57,7 @@ exports.bookinstance_create_post = [
     .escape(),
   body("status").escape(),
   body("due_back", "Invalid date")
-    .optional({ values: "falsy" })
+    .optional({ values: "false" })
     .isISO8601()
     .toDate(),
 
